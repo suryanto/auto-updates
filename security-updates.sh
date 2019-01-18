@@ -96,6 +96,7 @@ do
 
 			# Take a backup and if it succeeds, run the update
 			SITE_NAME=`basename ${i}`
+			tar czvf ${BACKUP_DIR}/${USER}-${SITE_NAME}-pre-sec-update_$(date +%F_%T).tar.gz * .htaccess
 			drush sql-dump | gzip > ${BACKUP_DIR}/${USER}-${SITE_NAME}-pre-sec-update_$(date +%F_%T).sql.gz && drush up ${DRUSHPARAM} -y | mail -s "${USER}-${SITE_NAME} website needs testing" "$EMAIL"
 			
 			cp .htaccess2 .htaccess
