@@ -13,11 +13,11 @@
 # To limit this script to only 1 site, set WEB_ROOT to the Drupal site directory.
 # To use on multiple sites, set WEB_ROOT to the directory containing all Drupal sites with a '/*' appended.
 
-WEB_ROOT="/var/www/virtual/${USER}/*"
+WEB_ROOT="/home/${USER}/*"
 
 # Replace with "public_html" if you use a public_html subfolder
-PUBLIC_DIR="."
-EMAIL="${USER}@${HOST}"
+PUBLIC_DIR="public_html"
+EMAIL="suryanto@rachmat.net"
 BACKUP_DIR="$HOME/drush-backups" # should be the same place as drush uses
 
 # The drupal (command line) console is required to enable mainenance mode for drupal 8.
@@ -91,10 +91,14 @@ do
 			else
 				drupal site:maintenance ON
 			fi
+			
+			cp .htaccess .htaccess2
 
 			# Take a backup and if it succeeds, run the update
 			SITE_NAME=`basename ${i}`
 			drush sql-dump | gzip > ${BACKUP_DIR}/${USER}-${SITE_NAME}-pre-sec-update_$(date +%F_%T).sql.gz && drush up ${DRUSHPARAM} -y | mail -s "${USER}-${SITE_NAME} website needs testing" "$EMAIL"
+			
+			cp .htaccess2 .htaccess
 
 			# disable  maintenance
 			if [ -z "$drupal" ]
