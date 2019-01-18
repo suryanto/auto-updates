@@ -93,6 +93,8 @@ do
 			fi
 			
 			cp .htaccess .htaccess2
+			
+			rm -rf backup
 
 			# Take a backup and if it succeeds, run the update
 			SITE_NAME=`basename ${i}`
