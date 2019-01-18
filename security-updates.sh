@@ -13,10 +13,10 @@
 # To limit this script to only 1 site, set WEB_ROOT to the Drupal site directory.
 # To use on multiple sites, set WEB_ROOT to the directory containing all Drupal sites with a '/*' appended.
 
-WEB_ROOT="/home/${USER}/*"
+WEB_ROOT="/home/${USER}/public_html"
 
 # Replace with "public_html" if you use a public_html subfolder
-PUBLIC_DIR="public_html"
+PUBLIC_DIR="."
 EMAIL="suryanto@rachmat.net"
 BACKUP_DIR="$HOME/drush-backups" # should be the same place as drush uses
 
