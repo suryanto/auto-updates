@@ -94,8 +94,6 @@ do
 			
 			cp .htaccess .htaccess2
 			
-			BACKUP = 'FALSE'
-			
 			if [ -d backup ]
 			then
 				mv backup backup123
