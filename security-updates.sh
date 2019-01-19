@@ -96,10 +96,9 @@ do
 			
 			BACKUP = 'FALSE'
 			
-			if [ -d "$DIRECTORY" ]
+			if [ -d backup ]
 			then
-				BACKUP = 'TRUE'
-				rm -rf backup
+				mv backup backup123
 			fi
 
 			# Take a backup and if it succeeds, run the update
@@ -110,9 +109,9 @@ do
 			cp .htaccess2 .htaccess
 			rm .htaccess2
 			
-			if [ $BACKUP == 'TRUE' ]
+			if [ -d backup123 ]
 			then
-				mkdir backup
+				mv backup123 backup
 			fi
 
 			# disable  maintenance
